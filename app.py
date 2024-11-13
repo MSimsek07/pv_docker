@@ -30,15 +30,15 @@ def predict_image(model, img):
     predicted_class = np.argmax(prediction)
     return predicted_class, prediction
 
-def display_results(uploaded_image, predicted_class, waste_labels, prediction):
+def display_results(uploaded_image, predicted_class, pv_labels, prediction):
     """
     Displays the uploaded image, predicted class, and probability distribution.
     """
     st.image(uploaded_image, caption='Yüklenen Görüntü', width=100)
-    st.write(f"Tahmin Edilen Sınıf: {waste_labels[predicted_class]}")
+    st.write(f"Tahmin Edilen Sınıf: {pv_labels[predicted_class]}")
     
     st.write("Tahmin İhtimalleri:")
-    labels = list(waste_labels.values())
+    labels = list(pv_labels.values())
     probabilities = prediction[0] * 100  # İhtimalleri yüzde olarak hesapla
 
     # Çubuk grafik
@@ -56,7 +56,7 @@ def main():
     """
     # Etiketler
     #"Cell", "Cell-Multi", "Cracking","Diode", "Diode-Multi", "Hot-Spot", "Hot-Spot-Multi", "No-Anomaly", "Offline-Module", "Shadowing", "Soiling", "Vegetation"
-    waste_labels = {0: 'Cell', 1: 'Cell-Multi', 2: 'Cracking', 3: 'Diode', 4: 'Diode-Multi', 5: 'No-Anomaly', 6: 'Offline-Module', 7: 'Shadowing', 8: 'Soiling', 9: 'Vegetation'}
+    pv_labels = {0: 'Cell', 1: 'Cell-Multi', 2: 'Cracking', 3: 'Diode', 4: 'Diode-Multi', 5: 'No-Anomaly', 6: 'Offline-Module', 7: 'Shadowing', 8: 'Soiling', 9: 'Vegetation'}
     
     # model yükle
     model = load_model()
@@ -71,7 +71,7 @@ def main():
     if uploaded_image is not None:
         img = process_image(uploaded_image)
         predicted_class, prediction = predict_image(model, img)
-        display_results(uploaded_image, predicted_class, waste_labels, prediction)
+        display_results(uploaded_image, predicted_class, pv_labels, prediction)
 
 if __name__ == "__main__":
     main()
