@@ -63,7 +63,7 @@ def main():
     
     # uygulama yükle
     st.title("PV Panels Anomaly Detection☀️")
-    st.write("Bu uygulama, güneş paneli görüntülerindeki anomalileri tespit etmek için eğitilmiş bir CNN derin öğrenme model kullanır. Lütfen bir görüntü yükleyin ve sonuçları görün.")
+    st.write("Bu uygulama, güneş paneli görüntülerindeki anomalileri tespit etmek için eğitilmiş bir CNN derin öğrenme model kullanır. Lütfen bir görüntü yükleyin ve sonuçları görün!")
     
     # giriş yap
     uploaded_image = st.file_uploader("Lütfen resim giriniz ", type=["jpg", "png", "jpeg"])
